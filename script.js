@@ -34,6 +34,7 @@ function useSuggestion(e) {
 }
 
 function highlight(e) {
+	if(e.target.tagName == 'LI')
 	e.target.style.backgroundColor = 'red'
 }
 
