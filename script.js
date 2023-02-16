@@ -8,15 +8,15 @@ function search(str) {
 	if(str == '') return results;
 	// TODO
 	for (let item of fruit) {
-		item.toLowerCase().includes(str) ? results.push(item) : null;
+		item.toLowerCase().includes(str.toLowerCase()) ? results.push(item) : null;
 	}
 	return results;
 }
 
 function searchHandler(e) {
 	// TODO
-	let term = e.target.value
-	showSuggestions(search(term.toLowerCase()));
+	let term = e.target.value;
+	showSuggestions(search(term),term);
 }
 
 function showSuggestions(results, inputVal) {
@@ -26,7 +26,19 @@ function showSuggestions(results, inputVal) {
 	else suggestions.classList.remove('has-suggestions')
 	for (let el of results) {
 		let li = document.createElement('li')
-		li.innerHTML = el
+		function check (el, inputVal) {
+			let e = el.toUpperCase()
+			let i = inputVal.toUpperCase()
+			let ind = e.indexOf(i)
+			let p1 = el.substring(0,ind)
+			let p2 = el.substring(ind, ind + i.length) 
+			p2 = `<b>${p2}</b>`
+			let p3 = el.substring(ind + i.length)
+			let spec = `${p1}${p2}${p3}`
+			spec = spec.replace(' ','&nbsp;')
+			return spec
+		}
+		li.innerHTML = check(el,inputVal)
 		suggestions.append(li)
 	}
 }
