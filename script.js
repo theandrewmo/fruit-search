@@ -5,6 +5,7 @@ const fruit = ['Apple', 'Apricot', 'Avocado 🥑', 'Banana', 'Bilberry', 'Blackb
 
 function search(str) {
 	let results = [];
+	if(str == '') return results;
 	// TODO
 	for (let item of fruit) {
 		item.toLowerCase().includes(str) ? results.push(item) : null;
@@ -21,6 +22,8 @@ function searchHandler(e) {
 function showSuggestions(results, inputVal) {
 	suggestions.innerHTML = '';
 	// TODO
+	if(results.length) suggestions.classList.add('has-suggestions')
+	else suggestions.classList.remove('has-suggestions')
 	for (let el of results) {
 		let li = document.createElement('li')
 		li.innerHTML = el
@@ -31,20 +34,19 @@ function showSuggestions(results, inputVal) {
 function useSuggestion(e) {
 	// TODO
 	input.value = e.target.innerText
+	suggestions.innerHTML = '';
 }
 
-function highlight(e) {
-	if(e.target.tagName == 'LI')
-	e.target.style.backgroundColor = 'red'
-}
+// function highlight(e) {
+// 	if(e.target.tagName == 'LI')
+// 	e.target.style.backgroundColor = 'red'
+// }
 
-function unHighlight(e) {
-	e.target.style.backgroundColor = ''
-}
+// function unHighlight(e) {
+// 	e.target.style.backgroundColor = ''
+// }
 
 input.addEventListener('keyup', searchHandler);
 suggestions.addEventListener('click', useSuggestion);
-suggestions.addEventListener('mouseover', highlight);
-suggestions.addEventListener('mouseout', unHighlight);
-
-
+// suggestions.addEventListener('mouseover', highlight);
+// suggestions.addEventListener('mouseout', unHighlight);
