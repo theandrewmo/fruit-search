@@ -45,7 +45,7 @@ input {
 .search-container .suggestions {
    /* TODO */
   max-height: 250px;
-  overflow: scroll;
+  overflow-y: auto;
 } 
 
 ul {
